@@ -1,6 +1,6 @@
 package ru.frostman.scalable.reactor.events;
 
-import ru.frostman.scalable.reactor.Connection;
+import ru.frostman.scalable.reactor.io.Connection;
 
 import java.util.concurrent.LinkedBlockingQueue;
 

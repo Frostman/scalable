@@ -1,6 +1,6 @@
 package ru.frostman.scalable.reactor.strategies;
 
-import ru.frostman.scalable.reactor.Connection;
+import ru.frostman.scalable.reactor.io.Connection;
 
 /**
  * @author Sergey "Frostman" Lukjanov

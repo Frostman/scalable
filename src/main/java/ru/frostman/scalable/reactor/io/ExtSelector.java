@@ -1,6 +1,7 @@
-package ru.frostman.scalable.reactor;
+package ru.frostman.scalable.reactor.io;
 
 import org.apache.log4j.Logger;
+import ru.frostman.scalable.reactor.ReactorException;
 import ru.frostman.scalable.reactor.client.Connector;
 import ru.frostman.scalable.reactor.server.Acceptor;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;

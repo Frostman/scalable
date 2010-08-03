@@ -1,8 +1,9 @@
 package ru.frostman.scalable.reactor.server;
 
-import ru.frostman.scalable.reactor.Connection;
+import ru.frostman.scalable.reactor.io.Connection;
 import ru.frostman.scalable.reactor.strategies.IOStrategy;
 
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 
 /**
@@ -13,37 +14,32 @@ public class ServerIOStrategy implements IOStrategy {
 
     @Override
     public boolean beforeRead(Connection connection) {
-//        boolean flag = connection.getDataQueue().getFree() > 0;
-//
-//        if (flag) {
-//            connection.setReadBuffer(ByteBuffer.allocate(connection.getPacketSize()));
-//        }
-//
-//        return flag;
-        return false;
+        ByteBuffer buffer = connection.getDataQueue().getFreeBuffer();
+        connection.setReadBuffer(buffer);
+
+        return buffer != null;
     }
 
     @Override
     public void afterRead(Connection connection) {
-//        connection.getDataQueue().add(connection.getReadBuffer());
+        connection.getDataQueue().fillBuffer();
     }
 
     @Override
     public boolean beforeWrite(Connection connection) {
-//        ByteBuffer buffer = connection.getDataQueue().tryTake();
-//        connection.setWriteBuffer(buffer);
-//
-//        if (buffer != null) {
-//            buffer.position(0);
-//        }
-//
-//        return buffer != null;
-        return false;
+        ByteBuffer buffer = connection.getDataQueue().getFilledBuffer();
+        connection.setWriteBuffer(buffer);
+
+        if (buffer != null) {
+            buffer.position(0);
+        }
+
+        return buffer != null;
     }
 
     @Override
     public void afterWrite(Connection connection) {
-        // no operation
+        connection.getDataQueue().freeBuffer();   
     }
 
     @Override

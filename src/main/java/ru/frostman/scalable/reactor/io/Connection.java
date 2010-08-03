@@ -1,4 +1,4 @@
-package ru.frostman.scalable.reactor;
+package ru.frostman.scalable.reactor.io;
 
 import org.apache.log4j.Logger;
 import ru.frostman.scalable.reactor.events.Event;

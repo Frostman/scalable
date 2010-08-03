@@ -1,8 +1,8 @@
 package ru.frostman.scalable.reactor.server;
 
 import org.apache.log4j.Logger;
-import ru.frostman.scalable.reactor.Connection;
-import ru.frostman.scalable.reactor.ExtSelector;
+import ru.frostman.scalable.reactor.io.Connection;
+import ru.frostman.scalable.reactor.io.ExtSelector;
 import ru.frostman.scalable.reactor.handlers.AcceptHandler;
 import ru.frostman.scalable.reactor.strategies.IOStrategy;
 import ru.frostman.scalable.reactor.utils.DataQueuePool;

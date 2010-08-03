@@ -2,6 +2,7 @@ package ru.frostman.scalable.reactor;
 
 import ru.frostman.scalable.app.Startable;
 import ru.frostman.scalable.reactor.handlers.ConnectionCreationHandler;
+import ru.frostman.scalable.reactor.io.ExtSelector;
 
 import java.io.IOException;
 
