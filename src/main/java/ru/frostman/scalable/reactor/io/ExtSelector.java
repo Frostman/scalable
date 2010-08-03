@@ -3,17 +3,12 @@ package ru.frostman.scalable.reactor.io;
 import org.apache.log4j.Logger;
 import ru.frostman.scalable.reactor.ReactorException;
 import ru.frostman.scalable.reactor.client.Connector;
-import ru.frostman.scalable.reactor.server.Acceptor;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
+import ru.frostman.scalable.reactor.server.Acceptor;
 
 import java.io.IOException;
-import java.nio.channels.CancelledKeyException;
-import java.nio.channels.SelectableChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
+import java.nio.channels.*;
+import java.util.*;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -63,6 +58,11 @@ public class ExtSelector implements Runnable {
     private final Executor executor;
 
     /**
+     * Map channel to SelectionKey
+     */
+    private final Map<Channel, SelectionKey> channels = new HashMap<Channel, SelectionKey>(200000);
+
+    /**
      * Creates a new selector and the associated thread started by this
      * constructor.
      *
@@ -108,7 +108,9 @@ public class ExtSelector implements Runnable {
         if (Thread.currentThread() != currentThread) {
             throw new ReactorException("Method can't be called from non selector thread");
         }
-        SelectionKey sk = channel.keyFor(selector);
+        //TODO may be work with O(n)
+//        SelectionKey sk = channel.keyFor(selector);
+        SelectionKey sk = channels.get(channel);
         changeKeyInterest(sk, sk.interestOps() | interest);
     }
 
@@ -143,7 +145,8 @@ public class ExtSelector implements Runnable {
         if (Thread.currentThread() != currentThread) {
             throw new ReactorException("Method can't be called from non selector thread");
         }
-        SelectionKey sk = channel.keyFor(selector);
+//        SelectionKey sk = channel.keyFor(selector);
+        SelectionKey sk = channels.get(channel);
         changeKeyInterest(sk, sk.interestOps() & ~interest);
     }
 
@@ -203,12 +206,14 @@ public class ExtSelector implements Runnable {
 
         try {
             if (channel.isRegistered()) {
-                SelectionKey sk = channel.keyFor(selector);
+//                SelectionKey sk = channel.keyFor(selector);
+                SelectionKey sk = channels.get(channel);
                 sk.interestOps(selectionKeys);
                 sk.attach(attachment);
             } else {
                 channel.configureBlocking(false);
-                channel.register(selector, selectionKeys, attachment);
+                SelectionKey sk = channel.register(selector, selectionKeys, attachment);
+                channels.put(channel, sk);
             }
         } catch (Exception e) {
             throw new ReactorException("Error in registering channel", e);
@@ -323,7 +328,7 @@ public class ExtSelector implements Runnable {
                     try {
                         int readyOps = sk.readyOps();
                         sk.interestOps(sk.interestOps() & ~readyOps);
-                        SelectorAttachment attachment = (SelectorAttachment) sk.attachment();
+                        SelectorAttachment attachment = (SelectorAttachment) sk.attachment();                                               
 
                         if (sk.isAcceptable()) {
                             ((Acceptor) attachment).doAccept();
@@ -332,22 +337,15 @@ public class ExtSelector implements Runnable {
                         } else {
                             final Connection connection = (Connection) sk.attachment();
                             if (sk.isValid() && sk.isReadable()) {
-                                executor.execute(new Runnable() {
-                                    public void run() {
-                                        connection.handleRead();
-                                    }
-                                });
+                                executor.execute(connection.getReadEvent());
                             }
 
                             if (sk.isValid() && sk.isWritable()) {
-                                executor.execute(new Runnable() {
-                                    public void run() {
-                                        connection.handleWrite();
-                                    }
-                                });
+                                executor.execute(connection.getWriteEvent());
                             }
                         }
                     } catch (Exception e) {
+                        //TODO log it                       
                         e.printStackTrace();
                     }
                 }
