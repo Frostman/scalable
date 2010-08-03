@@ -11,11 +11,13 @@ public class ArraySynchronizedDataQueueTest {
     @Test
     public void testInitialization() throws Exception {
         ArraySynchronizedDataQueue queue = new ArraySynchronizedDataQueue(32, 4);
+        queue.getFilledBuffer();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInitializationException() throws Exception {
         ArraySynchronizedDataQueue queue = new ArraySynchronizedDataQueue(-1, 4);
+        queue.getFilledBuffer();
     }
 
     @Test
@@ -31,7 +33,7 @@ public class ArraySynchronizedDataQueueTest {
         for (int i = 1; i < 32; i++) {
             Assert.assertNotNull(queue.getFreeBuffer());
             queue.fillBuffer();
-        }               
+        }
 
         Assert.assertNull(queue.getFreeBuffer());
         Assert.assertNotNull(queue.getFilledBuffer());
@@ -39,6 +41,6 @@ public class ArraySynchronizedDataQueueTest {
 
     @Test
     public void testMultiThreadUsing() throws Exception {
-        
+
     }
 }
