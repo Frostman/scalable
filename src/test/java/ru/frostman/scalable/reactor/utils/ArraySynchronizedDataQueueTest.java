@@ -36,4 +36,9 @@ public class ArraySynchronizedDataQueueTest {
         Assert.assertNull(queue.getFreeBuffer());
         Assert.assertNotNull(queue.getFilledBuffer());
     }
+
+    @Test
+    public void testMultiThreadUsing() throws Exception {
+        
+    }
 }
