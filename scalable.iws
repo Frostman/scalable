@@ -15,16 +15,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="08871224-7bb3-4d0e-be19-c861adc80812" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/ServerIOStrategy.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/ServerIOStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Connection.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/Connection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Reactor.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Reactor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/WriteEvent.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/WriteEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/LinkedSynchronizedEventQueue.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/LinkedSynchronizedEventQueue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/ReadEvent.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/ReadEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ExtSelector.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/ArraySynchronizedDataQueue.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/ArraySynchronizedDataQueue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/strategies/IOStrategy.java" afterPath="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/strategies/IOStrategy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scalable.iws" afterPath="$PROJECT_DIR$/scalable.iws" />
     </list>
     <ignored path="$USER_HOME_GRAILS$/" />
@@ -84,37 +74,7 @@
   </component>
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ServerIOStrategy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/ServerIOStrategy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="8" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Connection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/Connection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="13" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkedSynchronizedEventQueue.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/LinkedSynchronizedEventQueue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="27" selection-start="485" selection-end="485" vertical-scroll-proportion="0.3">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -137,13 +97,13 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Reactor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ReactorFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/client/Connector.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/ru/frostman/scalable/reactor/utils/ArraySynchronizedDataQueueTest.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/ArraySynchronizedDataQueue.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/ServerIOStrategy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java" />
       </list>
     </option>
   </component>
@@ -458,12 +418,12 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="MavenSettings" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="Application.REACTOR_SERVER">
+  <component name="RunManager" selected="Application.FLOOD_CLIENT">
     <configuration default="true" type="PhpRunConfigurationType" factoryName="PHP">
       <method>
         <option name="AntTarget" enabled="false" />
@@ -803,7 +763,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="51" width="1288" height="976" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -899,11 +859,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="731" selection-end="731" vertical-scroll-proportion="-0.8713376" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/client/Connector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="8" selection-start="318" selection-end="318" vertical-scroll-proportion="0.2625" />
@@ -947,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="639" selection-end="639" vertical-scroll-proportion="0.15">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Reactor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="13" selection-start="271" selection-end="271" vertical-scroll-proportion="0.20625">
@@ -984,25 +932,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/LinkedSynchronizedEventQueue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="27" selection-start="485" selection-end="485" vertical-scroll-proportion="0.3">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/ServerIOStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="8" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0">
+        <state line="24" column="8" selection-start="648" selection-end="648" vertical-scroll-proportion="0.45">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/Connection.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
+        <state line="23" column="7" selection-start="730" selection-end="730" vertical-scroll-proportion="0.225">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/events/LinkedSynchronizedEventQueue.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/Connection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="27" selection-start="485" selection-end="485" vertical-scroll-proportion="0.3">
+        <state line="23" column="13" selection-start="853" selection-end="853" vertical-scroll-proportion="-0.1125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="12" selection-start="2595" selection-end="2595" vertical-scroll-proportion="0.4125">
           <folding />
         </state>
       </provider>
