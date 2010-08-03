@@ -23,7 +23,7 @@ public class Main {
     /**
      * Supported args:
      *
-     * -m (mode) client, flood_client
+     * -m (mode) client, flood_client, tpc_server, reactor_server
      * -f frequency
      * -n threads
      * -t reporting timeout
