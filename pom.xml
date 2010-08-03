@@ -39,11 +39,28 @@
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2-beta-5</version>
                 <configuration>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>ru.frostman.scalable.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <finalName>scalable</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
