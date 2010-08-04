@@ -1,15 +1,10 @@
-package ru.frostman.scalable.reactor.io;
+package ru.frostman.scalable.reactor.impl;
 
-import org.apache.log4j.Logger;
-import ru.frostman.scalable.reactor.events.Event;
-import ru.frostman.scalable.reactor.events.ReadEvent;
-import ru.frostman.scalable.reactor.events.WriteEvent;
-import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
-import ru.frostman.scalable.reactor.strategies.IOStrategy;
-import ru.frostman.scalable.reactor.utils.ArraySynchronizedDataQueue;
+import ru.frostman.scalable.reactor.handlers.IOStrategy;
+import ru.frostman.scalable.reactor.io.ConnectionHandler;
+import ru.frostman.scalable.reactor.io.ExtSelector;
 import ru.frostman.scalable.reactor.utils.DataQueuePool;
 
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
@@ -21,46 +16,7 @@ import java.nio.channels.SocketChannel;
  * @author Sergey "Frostman" Lukjanov
  *         (me@frostman.ru)
  */
-public class Connection implements SelectorAttachment {
-    /**
-     * Logging handler.
-     */
-    private static final Logger log = Logger.getLogger(Connection.class);
-
-    /**
-     * Used to provide changing interestOps on channels.
-     */
-    private final ExtSelector selector;
-
-    /**
-     * SocketChannel to read/write.
-     */
-    private final SocketChannel socket;
-
-    /**
-     * Strategy of reads/writes.
-     */
-    private final IOStrategy ioStrategy;
-
-    /**
-     * Internal data queue.
-     */
-    private final ArraySynchronizedDataQueue dataQueue;    
-
-    /**
-     * ReadEvent instance
-     */
-    private Event readEvent = new ReadEvent(this);
-
-    /**
-     * WriteEvent instance
-     */
-    private Event writeEvent = new WriteEvent(this);
-
-    /**
-     * Some processing buffers.
-     */
-    private ByteBuffer readBuffer, writeBuffer, tmpBuffer;
+public class Connection extends ConnectionHandler {
 
     /**
      * Creates new connection handler with specified arguments.
@@ -71,16 +27,13 @@ public class Connection implements SelectorAttachment {
      * @param dataQueuePool external DataQueues pool.
      */
     public Connection(ExtSelector selector, SocketChannel socket, IOStrategy ioStrategy, DataQueuePool dataQueuePool) {
-        this.selector = selector;
-        this.socket = socket;
-        this.ioStrategy = ioStrategy;
-        dataQueue = dataQueuePool.acquireDataQueue();
+        super(selector, socket, ioStrategy, dataQueuePool);
     }
 
     /**
      * This method invokes when channel ready to read.
      */
-    public void handleRead() {
+    public void doRead() {
         if (!socket.isConnected()) {
             return;
         }
@@ -108,7 +61,7 @@ public class Connection implements SelectorAttachment {
             }
         } catch (Exception e) {
             log.info("Connection closed: " + socket);
-            log.trace("Exception in Connection.handleRead", e);
+            log.trace("Exception in Connection.doRead", e);
             close();
         }
 
@@ -123,7 +76,7 @@ public class Connection implements SelectorAttachment {
     /**
      * This method invokes when channel ready to write.
      */
-    public void handleWrite() {
+    public void doWrite() {
         if (!socket.isConnected()) {
             return;
         }
@@ -145,7 +98,7 @@ public class Connection implements SelectorAttachment {
             }
         } catch (Exception e) {
             log.info("Connection closed: " + socket);
-            log.trace("Exception in Connection.handleWrite", e);
+            log.trace("Exception in Connection.doWrite", e);
             close();
         }
 
@@ -160,6 +113,7 @@ public class Connection implements SelectorAttachment {
     /**
      * Add to selector interest to read for current channel.
      */
+    @Override
     public void addReadInterest() {
         selector.addChannelInterestLater(socket, SelectionKey.OP_READ);
     }
@@ -167,54 +121,8 @@ public class Connection implements SelectorAttachment {
     /**
      * Add to selector interest to write for current channel.
      */
+    @Override
     public void addWriteInterest() {
         selector.addChannelInterestLater(socket, SelectionKey.OP_WRITE);
-    }
-
-    /**
-     * Safe socket channel close.
-     */
-    private void close() {
-        try {
-            socket.close();
-        } catch (Exception e) {
-            // no operation
-        }
-    }
-
-    public ArraySynchronizedDataQueue getDataQueue() {
-        return dataQueue;
-    }
-
-    public ByteBuffer getReadBuffer() {
-        return readBuffer;
-    }
-
-    public void setReadBuffer(ByteBuffer readBuffer) {
-        this.readBuffer = readBuffer;
-    }
-
-    public ByteBuffer getWriteBuffer() {
-        return writeBuffer;
-    }
-
-    public void setWriteBuffer(ByteBuffer writeBuffer) {
-        this.writeBuffer = writeBuffer;
-    }
-
-    public ByteBuffer getTmpBuffer() {
-        return tmpBuffer;
-    }
-
-    public void setTmpBuffer(ByteBuffer tmpBuffer) {
-        this.tmpBuffer = tmpBuffer;
-    }
-
-    public Event getReadEvent() {
-        return readEvent;
-    }
-
-    public Event getWriteEvent() {
-        return writeEvent;
     }
 }

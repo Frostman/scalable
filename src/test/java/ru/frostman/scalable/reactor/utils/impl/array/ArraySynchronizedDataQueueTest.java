@@ -1,4 +1,4 @@
-package ru.frostman.scalable.reactor.utils;
+package ru.frostman.scalable.reactor.utils.impl.array;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,11 +24,12 @@ public class ArraySynchronizedDataQueueTest {
     public void testSingleThreadUsing() throws Exception {
         ArraySynchronizedDataQueue queue = new ArraySynchronizedDataQueue(32, 4);
 
+        Assert.assertEquals(32, queue.freeBuffersCount());
+        Assert.assertEquals(0, queue.filledBuffersCount());
         Assert.assertNotNull(queue.getFreeBuffer());
-        Assert.assertEquals(0, queue.size());
         Assert.assertNull(queue.getFilledBuffer());
         queue.fillBuffer();
-        Assert.assertEquals(1, queue.size());
+        Assert.assertEquals(31, queue.freeBuffersCount());
 
         for (int i = 1; i < 32; i++) {
             Assert.assertNotNull(queue.getFreeBuffer());
@@ -36,11 +37,19 @@ public class ArraySynchronizedDataQueueTest {
         }
 
         Assert.assertNull(queue.getFreeBuffer());
-        Assert.assertNotNull(queue.getFilledBuffer());
+
+        for (int i = 0; i < 32; i++) {
+            Assert.assertNotNull(queue.getFilledBuffer());
+            queue.freeBuffer();
+        }
+
+        Assert.assertNull(queue.getFilledBuffer());
+        Assert.assertEquals(0, queue.filledBuffersCount());
+        Assert.assertEquals(32, queue.freeBuffersCount());
     }
 
     @Test
     public void testMultiThreadUsing() throws Exception {
-
+        final ArraySynchronizedDataQueue dataQueue = new ArraySynchronizedDataQueue(32, 4);
     }
 }

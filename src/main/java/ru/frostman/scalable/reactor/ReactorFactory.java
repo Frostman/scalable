@@ -1,9 +1,10 @@
 package ru.frostman.scalable.reactor;
 
-import ru.frostman.scalable.reactor.server.Acceptor;
-import ru.frostman.scalable.reactor.server.ServerIOStrategy;
-import ru.frostman.scalable.reactor.strategies.IOStrategy;
-import ru.frostman.scalable.reactor.utils.DataQueuePool;
+import ru.frostman.scalable.reactor.handlers.ConnectionCreationHandler;
+import ru.frostman.scalable.reactor.handlers.IOStrategy;
+import ru.frostman.scalable.reactor.impl.handlers.server.Acceptor;
+import ru.frostman.scalable.reactor.impl.handlers.server.ServerIOStrategy;
+import ru.frostman.scalable.reactor.utils.impl.array.ArraySynchronizedDataQueuePool;
 
 /**
  * @author Sergey "Frostman" Lukjanov
@@ -14,10 +15,10 @@ public class ReactorFactory {
     }
 
     public static Reactor createEchoServer(String host, int port, int workerThreads, int dataQueuePoolSize, int dataQueueSize, int packetSize) {
-        DataQueuePool dataQueuePool = new DataQueuePool(dataQueuePoolSize, dataQueueSize, packetSize);
+        ArraySynchronizedDataQueuePool dataQueuePool = new ArraySynchronizedDataQueuePool(dataQueuePoolSize, dataQueueSize, packetSize);
         IOStrategy ioStrategy = new ServerIOStrategy();
         Reactor reactor = new Reactor(workerThreads);
-        Acceptor acceptor = new Acceptor(reactor.getSelector(), host, port, ioStrategy, dataQueuePool);
+        ConnectionCreationHandler acceptor = new Acceptor(reactor.getSelector(), host, port, ioStrategy, dataQueuePool);
         reactor.setConnectionCreationHandler(acceptor);
 
         return reactor;

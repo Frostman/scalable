@@ -2,9 +2,9 @@ package ru.frostman.scalable.reactor.io;
 
 import org.apache.log4j.Logger;
 import ru.frostman.scalable.reactor.ReactorException;
-import ru.frostman.scalable.reactor.client.Connector;
+import ru.frostman.scalable.reactor.handlers.AcceptHandler;
+import ru.frostman.scalable.reactor.handlers.ConnectHandler;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
-import ru.frostman.scalable.reactor.server.Acceptor;
 
 import java.io.IOException;
 import java.nio.channels.*;
@@ -301,7 +301,7 @@ public class ExtSelector implements Runnable {
      * pending
      */
     @Override
-    public void run() {
+    public void run() {                       
         try {
             while (true) {
                 invokePendingTasks();
@@ -332,11 +332,11 @@ public class ExtSelector implements Runnable {
                         SelectorAttachment attachment = (SelectorAttachment) sk.attachment();                                               
 
                         if (sk.isAcceptable()) {
-                            ((Acceptor) attachment).doAccept();
+                            ((AcceptHandler) attachment).doAccept();
                         } else if (sk.isConnectable()) {
-                            ((Connector) attachment).doConnect();
+                            ((ConnectHandler) attachment).doConnect();
                         } else {
-                            final Connection connection = (Connection) sk.attachment();
+                            final ConnectionHandler connection = (ConnectionHandler) sk.attachment();
                             if (sk.isValid() && sk.isReadable()) {
                                 executor.execute(connection.getReadEvent());
                             }
