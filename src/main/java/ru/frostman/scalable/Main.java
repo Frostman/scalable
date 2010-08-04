@@ -77,8 +77,7 @@ public class Main {
             return;
         }
 
-        LoggingLevelConfigurator.configure(loggingLevel);
-        StatisticsManager.init(reportingTimeout, System.out);
+        LoggingLevelConfigurator.configure(loggingLevel);        
 
         StringBuilder appConf = new StringBuilder();
         appConf.append("Application configuration:\n")
@@ -86,6 +85,7 @@ public class Main {
 
         Startable app = null;
         if (AppType.CLIENT == type) {
+            StatisticsManager.init(reportingTimeout, System.out);
 
             appConf.append("\t host: ").append(host).append('\n')
                     .append("\t port: ").append(port).append('\n')
@@ -95,6 +95,7 @@ public class Main {
             app = new EchoTPCClient(host, port, threads, frequency);
 
         } else if (AppType.NETTY_CLIENT == type) {
+            StatisticsManager.init(reportingTimeout, System.out);
 
             appConf.append("\t host: ").append(host).append('\n')
                     .append("\t port: ").append(port).append('\n');
@@ -102,6 +103,7 @@ public class Main {
             app = new EchoNettyClient(host, port);
 
         } else if (AppType.FLOOD_CLIENT == type) {
+            StatisticsManager.init(reportingTimeout, System.out);
 
             appConf.append("\t host: ").append(host).append('\n')
                     .append("\t port: ").append(port).append('\n')
@@ -120,10 +122,11 @@ public class Main {
         } else if (AppType.REACTOR_SERVER == type) {
 
             appConf.append("\t host: ").append(host).append('\n')
-                    .append("\t port: ").append(port).append('\n');
+                    .append("\t port: ").append(port).append('\n')
+                    .append("\t workers: ").append(threads).append('\n');
 
             //TODO delete hardcode and do accept in selector thread
-            app = ReactorFactory.createEchoServer(host, port, 2, 10000, 32, 4);
+            app = ReactorFactory.createEchoServer(host, port, threads, 10000, 32, 4);
 
         } else {
             log.fatal(type + " is not supported mode");

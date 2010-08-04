@@ -283,6 +283,7 @@ public class ExtSelector implements Runnable {
         }
         
         work = true;
+        log.info("Server start successfully");
         run();
     }
 
@@ -306,7 +307,7 @@ public class ExtSelector implements Runnable {
                 invokePendingTasks();
 
                 if (!work) {
-                    return;
+                    break;
                 }
 
                 int selectedKeys;
@@ -350,6 +351,7 @@ public class ExtSelector implements Runnable {
                     }
                 }
             }
+            log.info("Server stop");
         } catch (Throwable t) {
             closeSelector();
 

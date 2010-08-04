@@ -1,5 +1,6 @@
 package ru.frostman.scalable.reactor;
 
+import org.apache.log4j.Logger;
 import ru.frostman.scalable.app.Startable;
 import ru.frostman.scalable.reactor.handlers.ConnectionCreationHandler;
 import ru.frostman.scalable.reactor.io.ExtSelector;
@@ -11,6 +12,7 @@ import java.io.IOException;
  *         (me@frostman.ru)
  */
 public class Reactor implements Startable {
+    private static final Logger log = Logger.getLogger(Reactor.class);
     private ExtSelector selector;
     private ConnectionCreationHandler connectionCreationHandler;
     private boolean ready = false;
@@ -39,8 +41,8 @@ public class Reactor implements Startable {
     public void start() {
         if (!ready)
             throw new IllegalStateException();
-        
+
         connectionCreationHandler.start();
-        selector.start();
+        selector.start();                
     }
 }
