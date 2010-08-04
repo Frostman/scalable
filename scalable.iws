@@ -75,10 +75,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="scalable" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="scalable" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scalable">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.028957529">
+            <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="init.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/init.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="5" selection-start="15" selection-end="15" vertical-scroll-proportion="0.028957529">
               <folding />
             </state>
           </provider>
@@ -98,7 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ExtSelector.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ReactorFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/client/Connector.java" />
@@ -114,6 +122,7 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/DataQueuePool.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java" />
         <option value="$PROJECT_DIR$/scalable.sh" />
+        <option value="$PROJECT_DIR$/init.sh" />
       </list>
     </option>
   </component>
@@ -204,46 +213,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="scalable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scalable" />
@@ -731,11 +700,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/nio/channels/SelectableChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="0" selection-start="2967" selection-end="2967" vertical-scroll-proportion="0.33249685" />
-      </provider>
-    </entry>
     <entry file="jar:///usr/java/jdk1.6.0_21/jre/lib/rt.jar!/sun/nio/ch/SelectionKeyImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="42" selection-start="932" selection-end="932" vertical-scroll-proportion="0.44542032" />
@@ -832,7 +796,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scalable">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.028957529">
+        <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/init.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="5" selection-start="15" selection-end="15" vertical-scroll-proportion="0.028957529">
           <folding />
         </state>
       </provider>
