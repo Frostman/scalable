@@ -74,26 +74,7 @@
   </component>
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="scalable" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scalable">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="init.sh" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/init.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="5" selection-start="15" selection-end="15" vertical-scroll-proportion="0.028957529">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -603,7 +584,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="51" width="1280" height="973" extended-state="0" />
+    <frame x="0" y="51" width="1280" height="973" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -794,16 +775,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scalable">
+    <entry file="file://$PROJECT_DIR$/init.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.0">
+        <state line="1" column="5" selection-start="15" selection-end="15" vertical-scroll-proportion="0.028957529">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/init.sh">
+    <entry file="file://$PROJECT_DIR$/scalable">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="5" selection-start="15" selection-end="15" vertical-scroll-proportion="0.028957529">
+        <state line="1" column="0" selection-start="10" selection-end="10" vertical-scroll-proportion="0.028957529">
           <folding />
         </state>
       </provider>
