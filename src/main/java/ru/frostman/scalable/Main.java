@@ -77,7 +77,10 @@ public class Main {
             return;
         }
 
-        LoggingLevelConfigurator.configure(loggingLevel);        
+        LoggingLevelConfigurator.configure(loggingLevel);
+
+        log.info("Available processors: " + Runtime.getRuntime().availableProcessors());
+        log.info(String.format("Available memory: %.3f Mb", Runtime.getRuntime().freeMemory() / (1024. * 1024.)));        
 
         StringBuilder appConf = new StringBuilder();
         appConf.append("Application configuration:\n")
@@ -126,14 +129,14 @@ public class Main {
                     .append("\t workers: ").append(threads).append('\n');
 
             //TODO delete hardcode and do accept in selector thread
-            app = ReactorFactory.createEchoServer(host, port, threads, 10000, 32, 4);
+            app = ReactorFactory.createEchoServer(host, port, threads, 120000, 32, 4);
 
         } else {
             log.fatal(type + " is not supported mode");
             return;
         }
 
-        log.info(appConf);
+        log.info(appConf);                
         app.start();
     }
 
@@ -142,7 +145,7 @@ public class Main {
                 "     \n" +
                 "      -m (mode) client, flood_client, tpc_server, reactor_server\n" +
                 "      -f frequency\n" +
-                "      -n threads\n" +
+                "      -n threads (workers)\n" +
                 "      -t reporting timeout\n" +
                 "      -s server IP\n" +
                 "      -p server port\n +" +

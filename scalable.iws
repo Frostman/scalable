@@ -75,10 +75,10 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java">
+      <file leaf-file-name="scalable.sh" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scalable.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="128" column="62" selection-start="4660" selection-end="4660" vertical-scroll-proportion="0.6949807">
+            <state line="0" column="50" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -98,8 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Connection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/DataQueuePool.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ExtSelector.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/server/Acceptor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ReactorFactory.java" />
@@ -113,7 +111,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/DataQueue.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/Reactor.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/DataQueuePool.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java" />
+        <option value="$PROJECT_DIR$/scalable.sh" />
       </list>
     </option>
   </component>
@@ -247,100 +247,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tpc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scalable" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reactor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -597,7 +503,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="ru.frostman.scalable.Main" />
-      <option name="VM_PARAMETERS" value="" />
+      <option name="VM_PARAMETERS" value="Xms256m Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="-m flood_client -n 5 -p 2000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -617,7 +523,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="ru.frostman.scalable.Main" />
-      <option name="VM_PARAMETERS" value="" />
+      <option name="VM_PARAMETERS" value="Xms256m Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="-m tpc_server -p 2000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -637,7 +543,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="ru.frostman.scalable.Main" />
-      <option name="VM_PARAMETERS" value="" />
+      <option name="VM_PARAMETERS" value="Xms256m Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="-m tpc_client -n 2 -p 2000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -657,7 +563,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="ru.frostman.scalable.Main" />
-      <option name="VM_PARAMETERS" value="" />
+      <option name="VM_PARAMETERS" value="-Xms256m -Xmx512m" />
       <option name="PROGRAM_PARAMETERS" value="-m reactor_server -p 2000 -n 2" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -825,16 +731,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="766" column="25" selection-start="31752" selection-end="31752" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/util/concurrent/RejectedExecutionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="9" selection-start="1130" selection-end="1130" vertical-scroll-proportion="0.33204633" />
-      </provider>
-    </entry>
     <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/nio/channels/SocketChannel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="78" column="22" selection-start="3909" selection-end="3909" vertical-scroll-proportion="-4.46675" />
@@ -886,13 +782,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ReactorFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="26" selection-start="438" selection-end="438" vertical-scroll-proportion="0.33200794">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="285" column="46" selection-start="9099" selection-end="9099" vertical-scroll-proportion="0.5109344">
@@ -916,9 +805,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/DataQueuePool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="59" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/ReactorFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="17" selection-start="574" selection-end="574" vertical-scroll-proportion="0.38767394">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="62" selection-start="4660" selection-end="4660" vertical-scroll-proportion="0.6949807">
+        <state line="147" column="43" selection-start="5345" selection-end="5345" vertical-scroll-proportion="0.5370844">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scalable.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="50" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
