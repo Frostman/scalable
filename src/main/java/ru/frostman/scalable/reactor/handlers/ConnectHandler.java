@@ -22,5 +22,6 @@ public abstract class ConnectHandler extends ConnectionCreationHandler{
         super(selector, host, port, ioStrategy, dataQueuePool);
     }
 
+
     public abstract void doConnect();
 }

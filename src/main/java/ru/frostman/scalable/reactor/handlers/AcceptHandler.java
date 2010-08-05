@@ -26,7 +26,7 @@ public abstract class AcceptHandler extends ConnectionCreationHandler {
      */
     protected AcceptHandler(ExtSelector selector, String host, int port, IOStrategy ioStrategy, DataQueuePool dataQueuePool) {
         super(selector, host, port, ioStrategy, dataQueuePool);
-    }
+    }       
 
     public abstract void doAccept();
 }

@@ -115,7 +115,7 @@ public class Connection extends ConnectionHandler {
      */
     @Override
     public void addReadInterest() {
-        selector.addChannelInterestLater(socket, SelectionKey.OP_READ);
+        addChannelInterest(SelectionKey.OP_READ);
     }
 
     /**
@@ -123,6 +123,6 @@ public class Connection extends ConnectionHandler {
      */
     @Override
     public void addWriteInterest() {
-        selector.addChannelInterestLater(socket, SelectionKey.OP_WRITE);
+        addChannelInterest(SelectionKey.OP_WRITE);
     }
 }

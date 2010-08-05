@@ -1,6 +1,5 @@
 package ru.frostman.scalable.reactor.io;
 
-import org.apache.log4j.Logger;
 import ru.frostman.scalable.reactor.events.Event;
 import ru.frostman.scalable.reactor.handlers.IOStrategy;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
@@ -16,27 +15,12 @@ import java.nio.channels.SocketChannel;
  * @author Sergey "Frostman" Lukjanov
  *         (me@frostman.ru)
  */
-public abstract class ConnectionHandler implements SelectorAttachment {
-    /**
-     * Logging handler.
-     */
-    protected static final Logger log = Logger.getLogger(ConnectionHandler.class);
-
-    /**
-     * Used to provide changing interestOps on channels.
-     */
-    protected final ExtSelector selector;
-
+public abstract class ConnectionHandler extends SelectorAttachment {
     /**
      * SocketChannel to read/write.
      */
     protected final SocketChannel socket;
-
-    /**
-     * Strategy of reads/writes.
-     */
-    protected final IOStrategy ioStrategy;
-
+  
     /**
      * Internal data queue.
      */
@@ -66,9 +50,8 @@ public abstract class ConnectionHandler implements SelectorAttachment {
      * @param dataQueuePool external DataQueues pool.
      */
     protected ConnectionHandler(ExtSelector selector, SocketChannel socket, IOStrategy ioStrategy, DataQueuePool dataQueuePool) {
-        this.selector = selector;
+        super(selector, ioStrategy);
         this.socket = socket;
-        this.ioStrategy = ioStrategy;
         dataQueue = dataQueuePool.acquireDataQueue();
     }
 

@@ -1,14 +1,15 @@
 package ru.frostman.scalable.reactor.io;
 
 import org.apache.log4j.Logger;
-import ru.frostman.scalable.reactor.ReactorException;
 import ru.frostman.scalable.reactor.handlers.AcceptHandler;
 import ru.frostman.scalable.reactor.handlers.ConnectHandler;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
 
 import java.io.IOException;
-import java.nio.channels.*;
-import java.util.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -37,30 +38,15 @@ public class ExtSelector implements Runnable {
     private final Selector selector;
 
     /**
-     * The thread associated with selector.
-     */
-    private final Thread currentThread;
-
-    /**
      * Flag telling that selector must work
      * or gracefully terminated.
      */
     private boolean work = false;
 
     /**
-     * List of tasks for pending invocation.
-     */
-    private final ArrayList<Runnable> pendingTasks = new ArrayList<Runnable>(128);
-
-    /**
      * Executor for processing handlers.
      */
     private final Executor executor;
-
-    /**
-     * Map channel to SelectionKey
-     */
-    private final Map<Channel, SelectionKey> channels = new HashMap<Channel, SelectionKey>(200000);
 
     /**
      * Creates a new selector and the associated thread started by this
@@ -72,207 +58,8 @@ public class ExtSelector implements Runnable {
      */
     public ExtSelector(int threads) throws IOException {
         executor = Executors.newFixedThreadPool(threads);
-        selector = Selector.open();
-        currentThread = Thread.currentThread();
-    }
-
-    /**
-     * Add add channel interest to internal pending invocation queue.
-     *
-     * @param channel  to add interest
-     * @param interest to add
-     */
-    public void addChannelInterestLater(final SelectableChannel channel, final int interest) {
-        invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    addChannelInterestNow(channel, interest);
-                } catch (Exception e) {
-                    log.debug("Exception in addChannelInterestLater");
-                    log.trace("Exception in addChannelInterestLater", e);
-                }
-            }
-        });
-    }
-
-    /**
-     * Add the specified interest to channel.
-     *
-     * @param channel  to add interest.
-     * @param interest to add.
-     *
-     * @throws IOException iff errors.
-     */
-    public void addChannelInterestNow(SelectableChannel channel,
-                                      int interest) throws IOException {
-        if (Thread.currentThread() != currentThread) {
-            throw new ReactorException("Method can't be called from non selector thread");
-        }
-        //TODO may be work with O(n)
-//        SelectionKey sk = channel.keyFor(selector);
-        SelectionKey sk = channels.get(channel);
-        changeKeyInterest(sk, sk.interestOps() | interest);
-    }
-
-    /**
-     * Add remove interest from channel task to internal pending invocation queue.
-     *
-     * @param channel  to remove interest.
-     * @param interest to remove.
-     */
-    public void removeChannelInterestLater(final SelectableChannel channel, final int interest) {
-        invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    removeChannelInterestNow(channel, interest);
-                } catch (Exception e) {
-                    log.debug("Exception in removeChannelInterestLater");
-                    log.trace("Exception in removeChannelInterestLater", e);
-                }
-            }
-        });
-    }
-
-    /**
-     * Remove the specified interest from channel.
-     *
-     * @param channel  to remove interest.
-     * @param interest interest to remove
-     *
-     * @throws IOException iff errors.
-     */
-    public void removeChannelInterestNow(SelectableChannel channel, int interest) throws IOException {
-        if (Thread.currentThread() != currentThread) {
-            throw new ReactorException("Method can't be called from non selector thread");
-        }
-//        SelectionKey sk = channel.keyFor(selector);
-        SelectionKey sk = channels.get(channel);
-        changeKeyInterest(sk, sk.interestOps() & ~interest);
-    }
-
-    /**
-     * Set the interestOps of SelectionKey.
-     *
-     * @param sk             SelectionKey to set InterestOps
-     * @param newInterestOps ops to set
-     *
-     * @throws IOException iff errors
-     */
-    private void changeKeyInterest(SelectionKey sk, int newInterestOps) throws IOException {
-        try {
-            sk.interestOps(newInterestOps);
-        } catch (CancelledKeyException e) {
-            throw new ReactorException("Exception in changeKeyInterest", e);
-        }
-    }
-
-    /**
-     * Add register channel task to internal pending invocation queue.
-     *
-     * @param channel       to register
-     * @param selectionKeys interestOps
-     * @param attachment    to channel
-     */
-    public void registerChannelLater(final SelectableChannel channel, final int selectionKeys, final SelectorAttachment attachment) {
-        invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    registerChannelNow(channel, selectionKeys, attachment);
-                } catch (IOException e) {
-                    log.debug("Exception in registerChannelLater");
-                    log.trace("Exception in registerChannelLater", e);
-                }
-            }
-        });
-    }
-
-    /**
-     * Register SelectableChannel in selector.
-     *
-     * @param channel       to register
-     * @param selectionKeys interestOps
-     * @param attachment    to channel
-     *
-     * @throws IOException iff errors
-     */
-    public void registerChannelNow(SelectableChannel channel, int selectionKeys, SelectorAttachment attachment) throws IOException {
-        if (Thread.currentThread() != currentThread) {
-            throw new ReactorException("Method can't be called from non selector thread");
-        }
-
-        if (!channel.isOpen()) {
-            throw new ReactorException("Channel is not open.");
-        }
-
-        try {
-            if (channel.isRegistered()) {
-//                SelectionKey sk = channel.keyFor(selector);
-                SelectionKey sk = channels.get(channel);
-                sk.interestOps(selectionKeys);
-                sk.attach(attachment);
-            } else {
-                channel.configureBlocking(false);
-                SelectionKey sk = channel.register(selector, selectionKeys, attachment);
-                channels.put(channel, sk);
-            }
-        } catch (Exception e) {
-            throw new ReactorException("Error in registering channel", e);
-        }
-    }
-
-    /**
-     * Invoke the task in selector thread. This method is only schedules
-     * the task.
-     *
-     * @param run task to schedule.
-     */
-    public void invokeLater(Runnable run) {
-        synchronized (pendingTasks) {
-            pendingTasks.add(run);
-        }
-        selector.wakeup();
-    }
-
-    /**
-     * Invoke the task in selector thread. This method returns iff
-     * task processed.
-     *
-     * @param task to invoke
-     *
-     * @throws InterruptedException iff interrupts
-     */
-    public void invokeAndWait(final Runnable task) throws InterruptedException {
-        if (Thread.currentThread() == currentThread) {
-            task.run();
-        } else {
-            final Object obj = new Object();
-            final boolean[] invoked = {false};
-            synchronized (obj) {
-                this.invokeLater(new Runnable() {
-                    public void run() {
-                        task.run();
-                        invoked[0] = true;
-                        obj.notify();
-                    }
-                });
-                while (!invoked[0]) {
-                    obj.wait();
-                }
-            }
-        }
-    }
-
-    /**
-     * Invoke pending tasks. Locks pendingTasks list.
-     */
-    private void invokePendingTasks() {
-        synchronized (pendingTasks) {
-            for (Runnable pendingTask : pendingTasks) {
-                pendingTask.run();
-            }
-            pendingTasks.clear();
-        }
-    }
+        selector = Selector.open();        
+    }   
 
     /**
      * Starts main loop.
@@ -281,7 +68,7 @@ public class ExtSelector implements Runnable {
         if (work) {
             throw new IllegalStateException();
         }
-        
+
         work = true;
         log.info("Server start successfully");
         run();
@@ -301,24 +88,23 @@ public class ExtSelector implements Runnable {
      * pending
      */
     @Override
-    public void run() {                       
+    public void run() {
         try {
             while (true) {
-                invokePendingTasks();
-
                 if (!work) {
                     break;
                 }
 
                 int selectedKeys;
                 try {
-                    selectedKeys = selector.select();
+                    selectedKeys = selector.select(10);
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                     continue;
                 }
 
                 if (selectedKeys == 0) {
+                    // here we can check idle connections
                     continue;
                 }
 
@@ -328,15 +114,15 @@ public class ExtSelector implements Runnable {
                     it.remove();
                     try {
                         int readyOps = sk.readyOps();
-                        sk.interestOps(sk.interestOps() & ~readyOps);
-                        SelectorAttachment attachment = (SelectorAttachment) sk.attachment();                                               
+                        SelectorAttachment attachment = (SelectorAttachment) sk.attachment();
+                        attachment.removeChannelInterest(readyOps);
 
                         if (sk.isAcceptable()) {
                             ((AcceptHandler) attachment).doAccept();
                         } else if (sk.isConnectable()) {
                             ((ConnectHandler) attachment).doConnect();
                         } else {
-                            final ConnectionHandler connection = (ConnectionHandler) sk.attachment();
+                            ConnectionHandler connection = (ConnectionHandler) attachment;
                             if (sk.isValid() && sk.isReadable()) {
                                 executor.execute(connection.getReadEvent());
                             }
@@ -346,8 +132,7 @@ public class ExtSelector implements Runnable {
                             }
                         }
                     } catch (Exception e) {
-                        //TODO log it                       
-                        e.printStackTrace();
+                        log.error("Exception in processing SelectionKey", e);
                     }
                 }
             }
@@ -376,5 +161,14 @@ public class ExtSelector implements Runnable {
         } catch (IOException e) {
             // no operation
         }
+    }
+
+    public Selector getSelector() {
+        return selector;
+    }
+
+    public void wakeup() {
+        //TODO check it, if select(timeout)
+        selector.wakeup();
     }
 }

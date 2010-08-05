@@ -32,7 +32,7 @@ public class Acceptor extends AcceptHandler {
      * @param dataQueuePool pool of DataQueue.
      */
     public Acceptor(ExtSelector selector, String host, int port, IOStrategy ioStrategy, DataQueuePool dataQueuePool) {
-        super(selector, host, port, ioStrategy, dataQueuePool);
+        super(selector, host, port, ioStrategy, dataQueuePool);        
     }
 
     /**
@@ -45,7 +45,7 @@ public class Acceptor extends AcceptHandler {
             InetSocketAddress address = new InetSocketAddress(host, port);
             ssc.socket().bind(address, 150);
 
-            selector.registerChannelLater(ssc, SelectionKey.OP_ACCEPT, this);
+            registerChannel(ssc, SelectionKey.OP_ACCEPT, this);            
         } catch (IOException e) {
             //TODO log it
             e.printStackTrace();
@@ -53,21 +53,13 @@ public class Acceptor extends AcceptHandler {
     }
 
     /**
-     * Closes the server socket. Locks while closing.
+     * Closes the server socket.
      */
     @Override
     public void shutdown() {
         try {
-            selector.invokeAndWait(new Runnable() {
-                public void run() {
-                    try {
-                        ssc.close();
-                    } catch (Exception e) {
-                        // no operation
-                    }
-                }
-            });
-        } catch (InterruptedException e) {
+            ssc.close();
+        } catch (Exception e) {
             // no operation
         }
     }
@@ -80,7 +72,7 @@ public class Acceptor extends AcceptHandler {
         SocketChannel socket = null;
         try {
             socket = ssc.accept();
-            selector.addChannelInterestNow(ssc, SelectionKey.OP_ACCEPT);
+            addChannelInterest(SelectionKey.OP_ACCEPT);
         } catch (IOException e) {
             log.error("Exception in doAccept", e);
         }
@@ -90,7 +82,7 @@ public class Acceptor extends AcceptHandler {
                 socket.socket().setReceiveBufferSize(2 * dataQueuePool.getDataQueueSize() * dataQueuePool.getPacketSize());
                 socket.socket().setSendBufferSize(2 * dataQueuePool.getDataQueueSize() * dataQueuePool.getPacketSize());
                 ConnectionHandler connection = new Connection(selector, socket, ioStrategy, dataQueuePool);
-                selector.registerChannelNow(socket, ioStrategy.getInitiateInterest(), connection);
+                registerChannel(socket, ioStrategy.getInitiateInterest(), connection);                
             } catch (IOException e) {
                 log.debug("Exception in changing buffer's size", e);
             }
