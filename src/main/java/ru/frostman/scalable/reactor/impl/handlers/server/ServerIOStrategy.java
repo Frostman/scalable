@@ -28,11 +28,7 @@ public class ServerIOStrategy implements IOStrategy {
     @Override
     public boolean beforeWrite(ConnectionHandler connection) {
         ByteBuffer buffer = connection.getDataQueue().getFilledBuffer();
-        connection.setWriteBuffer(buffer);
-
-        if (buffer != null) {
-            buffer.position(0);
-        }
+        connection.setWriteBuffer(buffer);        
 
         return buffer != null;
     }

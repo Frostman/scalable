@@ -41,6 +41,7 @@ public abstract class ConnectionHandler extends SelectorAttachment {
      */
     protected ByteBuffer readBuffer, writeBuffer, tmpBuffer;
 
+
     /**
      * Creates new connection handler with specified arguments.
      *
@@ -74,6 +75,10 @@ public abstract class ConnectionHandler extends SelectorAttachment {
      * Add to selector interest to write for current channel.
      */
     public abstract void addWriteInterest();
+
+    public abstract boolean removeReadInterest();
+
+    public abstract boolean removeWriteInterest();
 
     /**
      * Safe socket channel close.

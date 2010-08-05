@@ -37,7 +37,12 @@ public class ArraySynchronizedDataQueue implements DataQueue {
 
     @Override
     public ByteBuffer getFreeBuffer() {
-        return !free.tryAcquire() ? null : buffers[freeIdx];
+        if (!free.tryAcquire()) {
+            return null;
+        } else {
+            buffers[freeIdx].position(0);
+            return buffers[freeIdx];
+        }
     }
 
     @Override
@@ -48,7 +53,12 @@ public class ArraySynchronizedDataQueue implements DataQueue {
 
     @Override
     public ByteBuffer getFilledBuffer() {
-        return !used.tryAcquire() ? null : buffers[usedIdx];
+        if (!used.tryAcquire())
+            return null;
+        else {
+            buffers[usedIdx].position(0);
+            return buffers[usedIdx];
+        }
     }
 
     @Override
@@ -76,5 +86,9 @@ public class ArraySynchronizedDataQueue implements DataQueue {
 
     final int inc(int i) {
         return (++i == capacity) ? 0 : i;
+    }
+
+    public int getBufferCapacity() {
+        return bufferCapacity;
     }
 }

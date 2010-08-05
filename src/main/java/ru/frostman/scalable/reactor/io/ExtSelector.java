@@ -58,7 +58,7 @@ public class ExtSelector implements Runnable {
      */
     public ExtSelector(int threads) throws IOException {
         executor = Executors.newFixedThreadPool(threads);
-        selector = Selector.open();        
+        selector = Selector.open();
     }   
 
     /**
@@ -113,9 +113,7 @@ public class ExtSelector implements Runnable {
                     SelectionKey sk = it.next();
                     it.remove();
                     try {
-                        int readyOps = sk.readyOps();
                         SelectorAttachment attachment = (SelectorAttachment) sk.attachment();
-                        attachment.removeChannelInterest(readyOps);
 
                         if (sk.isAcceptable()) {
                             ((AcceptHandler) attachment).doAccept();
@@ -123,11 +121,11 @@ public class ExtSelector implements Runnable {
                             ((ConnectHandler) attachment).doConnect();
                         } else {
                             ConnectionHandler connection = (ConnectionHandler) attachment;
-                            if (sk.isValid() && sk.isReadable()) {
+                            if (sk.isValid() && sk.isReadable() && connection.removeReadInterest()) {
                                 executor.execute(connection.getReadEvent());
                             }
 
-                            if (sk.isValid() && sk.isWritable()) {
+                            if (sk.isValid() && sk.isWritable() && connection.removeWriteInterest()) {
                                 executor.execute(connection.getWriteEvent());
                             }
                         }

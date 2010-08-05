@@ -5,8 +5,8 @@ import ru.frostman.scalable.reactor.io.ConnectionHandler;
 import ru.frostman.scalable.reactor.io.ExtSelector;
 import ru.frostman.scalable.reactor.utils.DataQueuePool;
 
-import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Asynchronized read and write to socket. Internally used
@@ -17,6 +17,12 @@ import java.nio.channels.SocketChannel;
  *         (me@frostman.ru)
  */
 public class Connection extends ConnectionHandler {
+
+    //TODO documentation
+    private AtomicBoolean readEventQueued = new AtomicBoolean(false);
+
+    //TODO documentation
+    private AtomicBoolean writeEventQueued = new AtomicBoolean(false);
 
     /**
      * Creates new connection handler with specified arguments.
@@ -115,7 +121,7 @@ public class Connection extends ConnectionHandler {
      */
     @Override
     public void addReadInterest() {
-        addChannelInterest(SelectionKey.OP_READ);
+        readEventQueued.set(false);
     }
 
     /**
@@ -123,6 +129,14 @@ public class Connection extends ConnectionHandler {
      */
     @Override
     public void addWriteInterest() {
-        addChannelInterest(SelectionKey.OP_WRITE);
+        writeEventQueued.set(false);
+    }
+
+    public boolean removeReadInterest() {
+        return readEventQueued.compareAndSet(false, true);
+    }
+
+    public boolean removeWriteInterest() {
+        return writeEventQueued.compareAndSet(false, true);
     }
 }

@@ -48,7 +48,7 @@ public class Main {
         int reportingTimeout = 1;
         String host = "localhost";
         int port = 7;
-        LoggingLevel loggingLevel = LoggingLevel.DEBUG;
+        LoggingLevel loggingLevel = LoggingLevel.INFO;
 
         //TODO see gnu.getopt 
 

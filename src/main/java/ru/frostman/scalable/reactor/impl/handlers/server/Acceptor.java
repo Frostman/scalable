@@ -72,7 +72,6 @@ public class Acceptor extends AcceptHandler {
         SocketChannel socket = null;
         try {
             socket = ssc.accept();
-            addChannelInterest(SelectionKey.OP_ACCEPT);
         } catch (IOException e) {
             log.error("Exception in doAccept", e);
         }

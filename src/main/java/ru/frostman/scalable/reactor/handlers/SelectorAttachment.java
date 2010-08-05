@@ -36,28 +36,5 @@ public abstract class SelectorAttachment {
 
     protected void setSelectionKey(SelectionKey selectionKey) {
         this.selectionKey = selectionKey;
-    }
-
-    public void addChannelInterest(int interest) {
-        selectionKeyLock.lock();
-        try {
-            selectionKey.interestOps(selectionKey.interestOps() | interest);
-            selector.wakeup();
-        } catch (Exception e) {
-            log.trace(e);
-        } finally {
-            selectionKeyLock.unlock();
-        }
-    }
-
-    public void removeChannelInterest(int interest) {
-        selectionKeyLock.lock();
-        try {
-            selectionKey.interestOps(selectionKey.interestOps() & ~interest);
-        } catch (Exception e) {
-            log.trace(e);
-        } finally {
-            selectionKeyLock.unlock();
-        }
-    }
+    }   
 }
