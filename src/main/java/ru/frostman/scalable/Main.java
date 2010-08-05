@@ -103,7 +103,7 @@ public class Main {
             appConf.append("\t host: ").append(host).append('\n')
                     .append("\t port: ").append(port).append('\n');
 
-            app = new EchoNettyClient(host, port);
+            app = new EchoNettyClient(host, port, 4, threads);
 
         } else if (AppType.FLOOD_CLIENT == type) {
             StatisticsManager.init(reportingTimeout, System.out);

@@ -18,9 +18,9 @@ public class EchoNettyClientHandler extends SimpleChannelUpstreamHandler {
             throw new IllegalArgumentException("messageSize: " + messageSize);
         }
 
-        stats =StatisticsManager.getInstance();
+        stats = StatisticsManager.getInstance();
         
-        firstMessage = ChannelBuffers.buffer(messageSize);
+        firstMessage = ChannelBuffers.buffer(messageSize);        
         for (int i = 0; i < firstMessage.capacity(); i++) {
             firstMessage.writeByte((byte) i);
         }

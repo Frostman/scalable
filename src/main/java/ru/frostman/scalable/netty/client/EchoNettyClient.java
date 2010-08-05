@@ -1,7 +1,7 @@
 package ru.frostman.scalable.netty.client;
 
+import org.apache.log4j.Logger;
 import org.jboss.netty.bootstrap.ClientBootstrap;
-import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
@@ -16,25 +16,16 @@ import java.util.concurrent.Executors;
  *         (me@frostman.ru)
  */
 public class EchoNettyClient implements Startable {
-    private static final int DEFAULT_PORT = 7;
-    private static final int DEFAULT_MESSAGE_SIZE = 4;
-    private static String DEFAULT_HOST = "localhost";
+    private static final Logger log = Logger.getLogger(EchoNettyClient.class);
 
     private String host;
-    private int port, messageSize;
+    private int port, messageSize, connections;
 
-    public EchoNettyClient() {
-        this(DEFAULT_HOST, DEFAULT_PORT, DEFAULT_MESSAGE_SIZE);
-    }
-
-    public EchoNettyClient(String host, int port) {
-        this(host, port, DEFAULT_MESSAGE_SIZE);
-    }
-
-    public EchoNettyClient(String host, int port, int messageSize) {
+    public EchoNettyClient(String host, int port, int messageSize, int connections) {
         this.host = host;
         this.port = port;
         this.messageSize = messageSize;
+        this.connections = connections;
     }
 
     public void start() {
@@ -48,8 +39,14 @@ public class EchoNettyClient implements Startable {
             }
         });
 
-        ChannelFuture future = bootstrap.connect(new InetSocketAddress(host, port));
-        future.getChannel().getCloseFuture().awaitUninterruptibly();
-        bootstrap.releaseExternalResources();
+        log.info("Netty started");
+
+        for (int i = 0; i < connections; i++) {
+            bootstrap.connect(new InetSocketAddress(host, port));
+            log.info("connection started: " + i);
+
+        }
+        //future.getChannel().getCloseFuture().awaitUninterruptibly();
+        //bootstrap.releaseExternalResources();
     }
 }
