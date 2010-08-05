@@ -9,6 +9,7 @@ import java.util.HashMap;
 public enum AppType {
     CLIENT,
     NETTY_CLIENT,
+    NETTY_SERVER,
     FLOOD_CLIENT,
     TPC_SERVER,
     REACTOR_SERVER;
@@ -24,6 +25,7 @@ public enum AppType {
         abbrevs.put("client", AppType.CLIENT);
         abbrevs.put("tpc_client", AppType.CLIENT);
         abbrevs.put("netty_client", AppType.NETTY_CLIENT);
+        abbrevs.put("netty_server", AppType.NETTY_SERVER);
         abbrevs.put("flood_client", AppType.FLOOD_CLIENT);
         abbrevs.put("tpc_server", AppType.TPC_SERVER);
         abbrevs.put("reactor_server", AppType.REACTOR_SERVER);

@@ -6,6 +6,7 @@ import ru.frostman.scalable.app.Startable;
 import ru.frostman.scalable.log.LoggingLevel;
 import ru.frostman.scalable.log.LoggingLevelConfigurator;
 import ru.frostman.scalable.netty.client.EchoNettyClient;
+import ru.frostman.scalable.netty.server.EchoNettyServer;
 import ru.frostman.scalable.reactor.ReactorFactory;
 import ru.frostman.scalable.stats.StatisticsManager;
 import ru.frostman.scalable.tpc.client.EchoTPCClient;
@@ -80,7 +81,7 @@ public class Main {
         LoggingLevelConfigurator.configure(loggingLevel);
 
         log.info("Available processors: " + Runtime.getRuntime().availableProcessors());
-        log.info(String.format("Available memory: %.3f Mb", Runtime.getRuntime().freeMemory() / (1024. * 1024.)));        
+        log.info(String.format("Available memory: %.3f Mb", Runtime.getRuntime().freeMemory() / (1024. * 1024.)));
 
         StringBuilder appConf = new StringBuilder();
         appConf.append("Application configuration:\n")
@@ -104,6 +105,14 @@ public class Main {
                     .append("\t port: ").append(port).append('\n');
 
             app = new EchoNettyClient(host, port, 4, threads);
+
+        } else if (AppType.NETTY_SERVER == type) {
+            StatisticsManager.init(reportingTimeout, System.out);
+
+            appConf.append("\t host: ").append(host).append('\n')
+                    .append("\t port: ").append(port).append('\n');
+
+            app = new EchoNettyServer(host, port);
 
         } else if (AppType.FLOOD_CLIENT == type) {
             StatisticsManager.init(reportingTimeout, System.out);
@@ -136,7 +145,7 @@ public class Main {
             return;
         }
 
-        log.info(appConf);                
+        log.info(appConf);
         app.start();
     }
 

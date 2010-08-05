@@ -39,7 +39,7 @@ public class EchoNettyClient implements Startable {
             }
         });
 
-        log.info("Netty started");
+        log.info("Netty client started");
 
         for (int i = 0; i < connections; i++) {
             bootstrap.connect(new InetSocketAddress(host, port));

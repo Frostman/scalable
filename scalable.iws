@@ -75,10 +75,21 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EchoNettyClient.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/client/EchoNettyClient.java">
+      <file leaf-file-name="EchoNettyServer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="65" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.7696737">
+            <state line="42" column="39" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EchoNettyServerHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServerHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="35" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.67754316">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,9 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/handlers/SelectorAttachment.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/impl/handlers/server/Acceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/impl/handlers/server/ServerIOStrategy.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/impl/array/ArraySynchronizedDataQueue.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/tpc/client/EchoTPCClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/utils/ThreadPool.java" />
@@ -114,8 +122,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/client/EchoNettyClientHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/stats/StatisticsManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/app/AppType.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/client/EchoNettyClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServerHandler.java" />
       </list>
     </option>
   </component>
@@ -281,7 +292,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tpc" />
+              <option name="myItemId" value="netty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -315,7 +326,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tpc" />
+              <option name="myItemId" value="netty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scalable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scalable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scalable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -439,7 +484,7 @@
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <envs />
-      <module name="scalable" />
+      <module name="" />
       <option name="testToRun" value="" />
       <option name="keywords" value="" />
       <method>
@@ -671,6 +716,26 @@
         <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test" />
       </method>
     </configuration>
+    <configuration default="false" name="NETTY_SERVER" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="snapshooter" />
+      <option name="MAIN_CLASS_NAME" value="ru.frostman.scalable.Main" />
+      <option name="VM_PARAMETERS" value="-Xms256m -Xmx512m" />
+      <option name="PROGRAM_PARAMETERS" value="-m netty_server -n 2 -p 2000" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="scalable" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method>
+        <option name="Maven.BeforeRunTask" enabled="false" file="$PROJECT_DIR$/pom.xml" goal="test" />
+      </method>
+    </configuration>
     <configuration default="false" name="JUNIT_TEST" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <extension name="snapshooter" />
@@ -694,13 +759,14 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="6">
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Application.FLOOD_CLIENT" />
       <item index="1" class="java.lang.String" itemvalue="Application.TPC_SERVER" />
       <item index="2" class="java.lang.String" itemvalue="Application.TPC_CLIENT" />
       <item index="3" class="java.lang.String" itemvalue="Application.REACTOR_SERVER" />
       <item index="4" class="java.lang.String" itemvalue="Application.NETTY_CLIENT" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.JUNIT_TEST" />
+      <item index="5" class="java.lang.String" itemvalue="Application.NETTY_SERVER" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.JUNIT_TEST" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -745,11 +811,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="51" width="1288" height="976" extended-state="6" />
-    <editor active="true" />
+    <frame x="-4" y="51" width="1288" height="976" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850242" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39855072" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -762,10 +829,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20714866" sideWeight="0.6630435" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32850242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32850242" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969698" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -842,71 +908,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///usr/java/jdk1.6.0_21/jre/lib/rt.jar!/sun/nio/ch/EPollSelectorProvider.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="155" selection-end="155" vertical-scroll-proportion="0.075">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/nio/channels/spi/SelectorProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.3325">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ConnectionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="0" selection-start="2152" selection-end="2152" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/impl/Connection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="19" selection-start="3625" selection-end="3625" vertical-scroll-proportion="0.5575">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/reactor/io/ExtSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="83" selection-start="3785" selection-end="3785" vertical-scroll-proportion="0.6375">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="175" selection-end="175" vertical-scroll-proportion="0.15">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final.jar!/org/jboss/netty/channel/Channels.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="68" selection-start="351" selection-end="351" vertical-scroll-proportion="0.15768725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/channel/Channels.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="32" selection-start="648" selection-end="656" vertical-scroll-proportion="0.01875">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/buffer/LittleEndianHeapChannelBuffer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="11" selection-start="1375" selection-end="1375" vertical-scroll-proportion="0.3325">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/buffer/ChannelBuffers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="30" selection-start="5336" selection-end="5336" vertical-scroll-proportion="0.5235669">
@@ -942,16 +943,83 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/bootstrap/ClientBootstrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="126" column="11" selection-start="4592" selection-end="4592" vertical-scroll-proportion="0.33205375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/channel/socket/nio/NioClientSocketChannelFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="102" column="11" selection-start="4413" selection-end="4413" vertical-scroll-proportion="0.33205375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.6.0_21/src.zip!/java/util/concurrent/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="17" selection-start="3225" selection-end="3225" vertical-scroll-proportion="0.33266932">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/channel/socket/nio/NioWorker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="20" selection-start="4622" selection-end="4622" vertical-scroll-proportion="0.33205375">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/channel/socket/nio/NioServerSocketPipelineSink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="32" selection-start="2597" selection-end="2597" vertical-scroll-proportion="0.4184261">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/jboss/netty/netty/3.2.1.Final/netty-3.2.1.Final-sources.jar!/org/jboss/netty/channel/socket/nio/NioServerSocketChannelFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="25" selection-start="5864" selection-end="5864" vertical-scroll-proportion="0.7927063">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/app/AppType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="56" selection-start="702" selection-end="702" vertical-scroll-proportion="0.77735126">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="60" selection-start="3807" selection-end="3807" vertical-scroll-proportion="0.33205375">
+        <state line="114" column="48" selection-start="4162" selection-end="4162" vertical-scroll-proportion="0.6046065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/client/EchoNettyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="65" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.7696737">
+        <state line="17" column="13" selection-start="549" selection-end="549" vertical-scroll-proportion="0.33205375">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="39" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/frostman/scalable/netty/server/EchoNettyServerHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="35" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.67754316">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
