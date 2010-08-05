@@ -25,24 +25,39 @@ public class EchoTPCClient implements Startable {
 
         Thread[] clients = new Thread[(frequency == 0 ? 2 : 1) * threads];
 
+        boolean ok = true;
         if (frequency != 0) {
-            for (int i = 0; i < threads; i++) {
-                clients[i] = new Thread(new EchoTPCClientHandler(host, port, frequency));
-                clients[i].start();
+            try {
+                for (int i = 0; i < threads; i++) {
+                    clients[i] = new Thread(new EchoTPCClientHandler(host, port, frequency));
+                    clients[i].start();
+                }
+            } catch (Exception e) {
+                log.error(e);
+                ok = false;
             }
         } else {
-            for (int i = 0; i < threads; i++) {
-                EchoTPCFloodSenderHandler sender = new EchoTPCFloodSenderHandler(host, port);
-                clients[i] = new Thread(sender);
-                clients[i].start();
+            try {
+                for (int i = 0; i < threads; i++) {
+                    EchoTPCFloodSenderHandler sender = new EchoTPCFloodSenderHandler(host, port);
+                    clients[i] = new Thread(sender);
+                    clients[i].start();
 
-                clients[threads + i] = new Thread(
-                        new EchoTPCFloodReceiverHandler(sender.getSocket(), sender.getDis()));
-                clients[threads + i].start();
+                    clients[threads + i] = new Thread(
+                            new EchoTPCFloodReceiverHandler(sender.getSocket(), sender.getDis()));
+                    clients[threads + i].start();
+                }
+            } catch (Exception e) {
+                log.error(e);
+                ok = false;
             }
         }
 
-        log.info("All clients started successfully");
+        if(ok) {
+            log.info("All clients started successfully");
+        }else {
+            log.warn("Some troubles in starting clients");
+        }
 
         try {
             for (Thread client : clients) {

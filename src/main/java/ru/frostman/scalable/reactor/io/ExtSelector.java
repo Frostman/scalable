@@ -4,14 +4,14 @@ import org.apache.log4j.Logger;
 import ru.frostman.scalable.reactor.handlers.AcceptHandler;
 import ru.frostman.scalable.reactor.handlers.ConnectHandler;
 import ru.frostman.scalable.reactor.handlers.SelectorAttachment;
+import ru.frostman.scalable.reactor.utils.EventExecutor;
+import ru.frostman.scalable.reactor.utils.impl.StaticThreadEventExecutor;
 
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 /**
  * This class is I/O Event queue for selector. It provides high level
@@ -46,7 +46,7 @@ public class ExtSelector implements Runnable {
     /**
      * Executor for processing handlers.
      */
-    private final Executor executor;
+    private final EventExecutor executor;
 
     /**
      * Creates a new selector and the associated thread started by this
@@ -57,7 +57,7 @@ public class ExtSelector implements Runnable {
      * @throws IOException iff Selector.open() crushed.
      */
     public ExtSelector(int threads) throws IOException {
-        executor = Executors.newFixedThreadPool(threads);
+        executor = new StaticThreadEventExecutor(threads, 300000);
         selector = Selector.open();
     }   
 
@@ -93,11 +93,11 @@ public class ExtSelector implements Runnable {
             while (true) {
                 if (!work) {
                     break;
-                }
+                }              
 
                 int selectedKeys;
                 try {
-                    selectedKeys = selector.select(10);
+                    selectedKeys = selector.select();
                 } catch (IOException ioe) {
                     ioe.printStackTrace();
                     continue;
